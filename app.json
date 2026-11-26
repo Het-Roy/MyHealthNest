@@ -8,16 +8,29 @@
     "scheme": "myhealthnest",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "infoPlist": {
+        "NSCameraUsageDescription": "MyHealthNest uses your camera to scan prescriptions and medical reports.",
+        "NSPhotoLibraryUsageDescription": "MyHealthNest lets you select medical documents from your photo library.",
+        "NSFaceIDUsageDescription": "MyHealthNest uses Face ID to protect your private medical vault.",
+        "NSContactsUsageDescription": "MyHealthNest lets you import an emergency contact from your address book."
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#E8F5F2",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_CONTACTS",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "output": "server",
@@ -28,14 +41,40 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#E8F5F2",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      "expo-secure-store",
+      "expo-sharing",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow MyHealthNest to access your camera to scan medical documents."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow MyHealthNest to select medical reports from your photos."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow MyHealthNest to use Face ID to unlock your medical vault."
+        }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow MyHealthNest to import an emergency contact."
+        }
+      ],
+      "expo-notifications"
     ],
     "experiments": {
-      "typedRoutes": true,
       "reactCompiler": true
     }
   }
